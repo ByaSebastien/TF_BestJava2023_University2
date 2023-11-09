@@ -1,6 +1,8 @@
 package be.bstorm.controllers;
 
-import be.bstorm.exceptions.course.CourseAlreadyExistException;
+import be.bstorm.exceptions.course.AlreadyExistCourseException;
+import be.bstorm.exceptions.course.CourseException;
+import be.bstorm.exceptions.course.NotFoundCourseException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerAdvisor {
 
     //Methode qui gere les CourseAlreadyExistException
-    @ExceptionHandler(CourseAlreadyExistException.class)
-    public ResponseEntity<Object> handleCourseAlreadyExistException(CourseAlreadyExistException exception){
+    @ExceptionHandler(CourseException.class)
+    public ResponseEntity<Object> handleCourseAlreadyExistException(CourseException exception){
         return ResponseEntity.status(400).body(exception.getMessage());
 //        return ResponseEntity.badRequest().body(exception.getMessage());
     }

@@ -31,6 +31,11 @@ public class Branch extends BaseEntity<String>{
         this.courses = new HashSet<>();
     }
 
+    public Branch(String name) {
+        this();
+        this.name = name;
+    }
+
     public Set<Course> getCourses() {
         return Set.copyOf(this.courses);
     }

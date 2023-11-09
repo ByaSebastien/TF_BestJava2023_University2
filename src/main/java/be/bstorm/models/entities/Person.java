@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor @AllArgsConstructor
 @ToString @EqualsAndHashCode
 //extends BaseEntity<String> indique que l'id de Person sera un string
-public abstract class Person extends BaseEntity<String>{
+public class Person extends BaseEntity<String>{
 
     @Column(nullable = false,length = 50)
     @Getter @Setter

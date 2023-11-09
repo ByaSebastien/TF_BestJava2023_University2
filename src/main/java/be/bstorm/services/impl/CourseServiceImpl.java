@@ -1,12 +1,13 @@
 package be.bstorm.services.impl;
 
-import be.bstorm.exceptions.course.CourseAlreadyExistException;
+import be.bstorm.exceptions.course.AlreadyExistCourseException;
+import be.bstorm.exceptions.course.NotFoundCourseException;
 import be.bstorm.models.entities.Course;
 import be.bstorm.repositories.CourseRepository;
 import be.bstorm.services.CourseService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -21,7 +22,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Course create(Course course) {
         if (courseRepository.existsByName(course.getName())) {
-            throw new CourseAlreadyExistException();
+            throw new AlreadyExistCourseException();
         }
         String mnemo;
         do {
@@ -31,5 +32,15 @@ public class CourseServiceImpl implements CourseService {
 
         course.setId(mnemo);
         return courseRepository.save(course);
+    }
+
+    @Override
+    public Course findById(String id) {
+        return courseRepository.findById(id).orElseThrow(NotFoundCourseException::new);
+    }
+
+    @Override
+    public List<Course> findAll() {
+        return courseRepository.findAll();
     }
 }
