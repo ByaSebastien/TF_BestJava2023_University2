@@ -25,4 +25,10 @@ public class Course extends BaseEntity<String>{
     //Si on voulait gerer la bidirectionalité
 //    @ManyToMany(mappedBy = "courses")
 //    private Set<Branch> branches;
+
+
+    public Course(String name, String summary) {
+        this.name = name;
+        this.summary = summary;
+    }
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -19,6 +20,6 @@ public abstract class BaseEntity<T extends Serializable>{
     //Le type de l'id sera celui spécifié au moment de l'utilisation
     //La generecite peut servir a "retarder" la déclaration d'un type
     @Id
-    @Getter
+    @Getter @Setter
     private T id;
 }
