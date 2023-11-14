@@ -1,18 +1,21 @@
 package be.bstorm.models.entities.persons;
 
 import be.bstorm.models.entities.Person;
+import be.bstorm.models.entities.embedded.Address;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.*;
 
 import java.util.Objects;
 
 @Entity
+@DiscriminatorValue("TEACHER")
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode
 public class Teacher extends Person {
 
-    @Column(nullable = false,length = 50)
+    @Column(length = 50)
     @Getter @Setter
     private String title;
 
@@ -22,6 +25,11 @@ public class Teacher extends Person {
                 super.toString() +
                 "title='" + title + '\'' +
                 " }";
+    }
+
+    public Teacher(String firstname, String lastname, String username, String password, String role,Address address, String title) {
+        super(firstname, lastname, username, password, role,true,address);
+        this.title = title;
     }
 
     //Ce que @EqualsAndHashCode Genere

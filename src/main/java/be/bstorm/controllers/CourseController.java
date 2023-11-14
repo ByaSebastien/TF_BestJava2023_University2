@@ -6,6 +6,7 @@ import be.bstorm.models.forms.CourseForm;
 import be.bstorm.services.CourseService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,6 +19,7 @@ public class CourseController {
         this.courseService = courseService;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public ResponseEntity<Course> create(@RequestBody @Valid CourseForm form){
         Course course = courseService.create(form.toEntity());

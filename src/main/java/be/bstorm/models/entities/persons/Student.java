@@ -13,6 +13,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@DiscriminatorValue("STUDENT")
 public class Student extends Person {
 
     //On gere la bidirrectionalité du coté de student pour pouvoir recuperer les cours depuis les etudiants
@@ -33,12 +34,16 @@ public class Student extends Person {
         this.studentCourseSet = new HashSet<>();
     }
 
-    public Student(String firstname, String lastname, Address address, Set<StudentCourse> studentCourseSet, Branch branch) {
+    public Student(String id,String firstname, String lastname,String username,String password,String role, Address address) {
         //this() fait appel au constructeur vide de Student
         this();
+        this.setId(id);
+        this.setFirstname(firstname);
+        this.setLastname(lastname);
+        this.setUsername(username);
+        this.setPassword(password);
+        this.setRole(role);
         this.setAddress(address);
-        this.studentCourseSet = studentCourseSet;
-        this.branch = branch;
     }
 
     //Principe de copie defensive. On prefere renvoyer une copie de la list pour des raisons de securité
